@@ -11,7 +11,6 @@ const wordCounter = (value) => {
     let totalCount = 0;   
     // inside word lets you know if you are currenlt with in a word when program in running. allows you to track when new word starts 
     let insideWord =false; 
-
     // using a for loop to run through the inputted text. 
     for (let i=0; i < value.length; i++) {
       // value must not be equal to a space and it must not be inside of a word in prder fot this to run. Identifies the start of a new word
@@ -24,7 +23,6 @@ const wordCounter = (value) => {
         insideWord = false;
       }
     }
-
     wordCount.innerHTML = `Word Count: ${totalCount}`; 
   } else {
     // if the value is empty, set the error message value to "Please input text"
