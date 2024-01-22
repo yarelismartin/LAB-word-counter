@@ -2,20 +2,42 @@ console.log("Connected!")
 // YOU WILL MODIFY THIS FUNCTION TO GET THE PROGRAM TO WORK
 const wordCounter = (value) => {
   // Type into the input and press submit, you will see the value you entered in your console
+  const wordCount = document.getElementById("word-count");
+  const error = document.getElementById("error");
   console.log(value);
 
-  if (value) {
-    // COMPLETE THE LOGIC 
-    wordCount.innerHTML = `Word Count: 0`; 
+// the .trim will tak eout any unnecessary spacing. we are checking if it's not equal to no space 
+  if (value.trim() !== '') {
+    let totalCount = 0;   
+    // inside word lets you know if you are currenlt with in a word when program in running. allows you to track when new word starts 
+    let insideWord =false; 
+
+    // using a for loop to run through the inputted text. 
+    for (let i=0; i < value.length; i++) {
+      // value must not be equal to a space and it must not be inside of a word in prder fot this to run. Identifies the start of a new word
+      if (value [i] !== ' ' && insideWord === false) {
+        // incremmenting the counter by one and changin git to true because now you are within a word 
+        totalCount++; 
+        insideWord = true;
+        // this will run when there is a space in order to change the boolean to dalse because are are not within a word so the boolean needs to be unpdated so that the if statment runs next
+      } else if (value[i] === ' ') {
+        insideWord = false;
+      }
+    }
+
+    wordCount.innerHTML = `Word Count: ${totalCount}`; 
   } else {
     // if the value is empty, set the error message value to "Please input text"
-    error.innerHTML = ""; // UPDATE THIS
+    error.innerHTML = "Please input text"; // UPDATE THIS
   }
 }
 
 // OPTIONAL CHALLENGE
 const toggleMode = (btnText) => {
   // complete the function
+
+  const bgSwitch = document.getElementById("bg-switch");
+  
 }
 
 // ************************************************ //
