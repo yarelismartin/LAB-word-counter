@@ -32,13 +32,54 @@ const wordCounter = (value) => {
   }
 }
 
-// OPTIONAL CHALLENGE
-const toggleMode = (btnText) => {
-  // complete the function
+// allows the saving of key value pairs. unlike cookie only stored on the local computer not on the server, only use when clint setting want to be saved. Looking for the setting for the darkMode 
+let darkMode =localStorage.getItem("darkMode");
+const bgSwitch = document.getElementById("bg-switch");
 
-  const bgSwitch = document.getElementById("bg-switch");
-  
+
+// checking if dark mode is enabled 
+const enableDarkMode =() => {
+  // add class darkmode to the body
+  document.body.classList.add('darkmode');
+  // update darkMode in the localStorage
+  localStorage.setItem("darkMode", "enabled")
+};
+
+// is disabled
+const disableDarkMode =() => {
+  // remove the darkmode class
+  document.body.classList.remove("darkmode");
+  localStorage.setItem("darkMode", null)
+};
+
+// when page is refreshed it will enable darkMode based on localstorage value
+if (darkMode === "enabled"){
+  enableDarkMode();
 }
+
+// function for event listener 
+bgSwitch.addEventListener("click", () => {
+  // needed to add the localStorage in order to update everytime someone clicks on it vs. needing to refresh the page to toggle
+  darkMode = localStorage.getItem("darkMode");
+  // if not set to enable then run the enableDarkMode function
+  if (darkMode !== "enabled"){
+    enableDarkMode();
+    console.log("darkmode");
+  } else{
+    // disable it using the disable function 
+    disableDarkMode();
+    console.log("darkmode");
+  }
+});
+
+
+// OPTIONAL CHALLENGE
+// const toggleMode = (btnText) => {
+//   // complete the function
+
+  
+  
+// }
 
 // ************************************************ //
 // **** DO NOT MODIFY THE CODE BELOW THIS LINE **** //
@@ -65,6 +106,6 @@ form.addEventListener("reset", () => {
   wordCount.innerHTML = ""; // on reset, clear the innderHTML
 });
 
-toggleButton.addEventListener("click", (event) => {
-  toggleMode(event.target.innerHTML);
-});
+// toggleButton.addEventListener("click", (event) => {
+//   toggleMode(event.target.innerHTML);
+// });
